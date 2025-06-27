@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up | Retail Genie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .site-header {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .site-header h1 {
+      font-size: 28px;
+      color: #3b82f6;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .form-container h2 {
+      margin-bottom: 25px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    .form-container p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .form-container a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+
+    .form-container a:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .alert.error { background: #ffe0e0; color: #b30000; }
+    .alert.success { background: #e0ffe8; color: #007a3d; }
+    .alert.info { background: #e6f0ff; color: #0047b3; }
+    .alert.warning { background: #fff8e0; color: #b38f00; }
+  </style>
+</head>
+<body>
+
+  <div class="site-header">
+    <h1>Retail Genie</h1>
+  </div>
+
+  <div class="form-container">
+    <h2>Create Your Account</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, msg in messages %}
+          <div class="alert {{ category }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="">
+      <input type="text" name="username" placeholder="Choose a username" required>
+      <input type="email" name="email" placeholder="Your email address" required>
+      <input type="password" name="password" placeholder="Create a password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Already have an account?
+      <a href="{{ url_for('login') }}">Log In</a>
+    </p>
+  </div>
+
+</body>
+</html>

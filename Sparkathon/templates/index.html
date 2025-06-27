@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Retail Genie | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <span class="brand-name">Retail Genie</span>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="#">About Us</a>
+      <a href="{{ url_for('chatbot_page') }}">Chatbot</a>
+      <a href="{{ url_for('visualsearchpage') }}">Visual Search</a>
+      <a href="{{ url_for('quiz_page') }}">Quiz</a>
+    </div>
+
+    <div class="navbar-center">
+      <input type="text" placeholder="Search products..." class="search-input" />
+      <button class="search-btn">Search</button>
+    </div>
+
+    <div class="navbar-right">
+      {% if session.get('user') %}
+  <span class="auth-text">Welcome, {{ session['user'] }}!</span>
+  <a href="{{ url_for('logout') }}" class="auth-btn">Logout</a>
+{% else %}
+  <a href="{{ url_for('login') }}" class="auth-btn">Login</a>
+  <a href="{{ url_for('signup') }}" class="auth-btn signup">Sign Up</a>
+{% endif %}
+
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="home-content">
+    <h1>Welcome to Retail Genie</h1>
+    <p>Your personal AI shopping assistant. Use the chatbot, visual search, or quiz to find what you love!</p>
+  </main>
+
+</body>
+</html>
